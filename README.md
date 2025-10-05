@@ -1,33 +1,25 @@
 # git-cheatsheet
 
- 
-
 ## Introduction
-
 A simple guide on using Git and GitHub commands (status, push, pull, etc.). This repository is still under development — updates and improvements are ongoing.
  
 <details>
 <summary>
-  Tutorials
+  Get help
 </summary> <br />
-
+	
 ```bash
 $ git help
-$ git tutorial
-
-
 ```
- 
 </details>
 
 ## Setup Name and Email Address 
 
-It's highly recommended to configure the author name and email.  
-You will get an error "No such file or directory" 
+It is strongly recommended to configure your author name and email. Failure to do so may result in an error message stating “No such file or directory.”
 
 <details>
 <summary>
-  Tutorials
+  Configuration Guide
 </summary> <br />
 
 ```bash
@@ -153,14 +145,13 @@ $ exit
  
 </details>
 
-## Method 1. From an existing project/repository from Github/Bitbucket. 
+## Cloning remote repository 
+You can clone a remote repository from a remote server. For example from Github to your local machine. Github is arguably the most popular web based Git repository hosting service in the world.
 
 <details>
 <summary>
-  Tutorials
+Download the existing repository in zip file
 </summary> <br />
-
-- Style 1. Download the existing repository in zip file
 
 ```bash
 # 
@@ -191,7 +182,28 @@ $ cd <main-directory-name>
  
 </details>
 
-## Method 2. From scratch. Creating a folder from local environment
+
+
+
+<details>
+<summary>
+Creating a repository on Github
+</summary> <br />
+
+- **Step 1**: Provide "Repository name" for example 'git-bootcamp'
+- **Step 2**: Add Description (optional)
+- **Step 3**: Select Public or Private
+- **Step 4**: Initialize this repository with: tick "Add a README file"
+- **Step 5**: add .gitignore (optional)
+- **Step 6**: Add a license (optional)
+- **Step 7**: click "Create repository" 
+- **Step 8**: copy the remote repository URL
+> [!see this]
+> HTTPS or SSH : https://github.com/lpadlan/git-bootcamp.git.
+ 
+</details>
+
+## Creating a folder from local environment from scratch.
 
 By executing the "git init" command in an empty folder, which will become the root directory of your repository. This will create a blank repository, which later you can add new artifacts to.
 
@@ -199,7 +211,8 @@ By executing the "git init" command in an empty folder, which will become the ro
 <summary>
 Creating an empty project folder
 </summary> <br />
-
+     
+##
 ```bash
 $ pwd
 
@@ -220,8 +233,8 @@ $ cd <main-directory-name>
 <summary>
 Initialize project folder
 </summary> <br />
+     
 ##
-
 1. Initialize through the command line:
 ```bash
 $ pwd
@@ -338,133 +351,172 @@ origin https://github.com/lpadlan/git-bootcamp.git (push)
 
 
 
-<details>
-<summary>
-OTHERS
-</summary> <br />
  
 
-```bash
-# For Modified files
-- git add <file> (every you execute this, you will see "git reset HEAD <file>" command to unstage when you execute git status) 
-- git checkout -- <filename>
+ 
 
-## For Modified files - option 2. Checkout (to discard or reverting)
-<main-directory-name (master)> $ git status
-<main-directory-name (master)> $ git checkout -- <filename>
-<main-directory-name (master)> $ git status
-```
-- Reverting Changes From a Git Repository
+ 
+ 
+</details>
 
-```bash
-# For Modified files after executing "git add". Take note, the command "git status" hasn't been executed
-modify a file
-<main-directory-name (master)> $ git add <file/s>
-<main-directory-name (master)> $ git status (here you will see get reset HEAD <file>)
-<main-directory-name (master)> $ git reset HEAD <filename>
-<main-directory-name (master)> $ git status
-showing the following again:
-- git add <file>  
-- git checkout -- <filename>
+## Creating branches
 
-<main-directory-name (master)> $ git checkout -- <filename>
+This repository also includes simple steps for working with branches:
+- **Step 1**: Creating a branch - Use git branch <branch-name> to create a new branch for your changes.
+- **Step 2**: Merging a branch to main – Switch to the main branch using git checkout main, then merge with git merge <branch-name>.
+- **Step 3**: Checking out a branch – Use git checkout <branch-name> to switch between branches when working on multiple features.
+- **Step 4**: Deleting a branch – Once merged, remove it using git branch -d <branch-name> (or -D for force delete).
 
-# For newly added directory and file OR it hasn't been tracked 
-add a file
-<main-directory-name (master)> $ git add <file/s>
-<main-directory-name (master)> $ git status  (you will see git rm --cached <file>..." to unstage)
-<main-directory-name (master)> $ git rm --cached <filename>
-<main-directory-name (master)> $ git status (this shows "Untracked files" )
-<main-directory-name (master)> $ rm <filename>
-<main-directory-name (master)> $ git status (this shows "Initial commit")
+Terminology:
+-  local branch
+- hotfix branch (just a branch to fix urgent issues in PROD)
 
-```
+Tips and trick when naming branches
+  
+-  naming conventions 
+     -  `bug-<bug-id>-<desc>`
+     -  `feature-<desc>`
+     -  `branch-<desc>` (you want to play around)
+-  avoid numbers only
+-  avoid long branch names
 
-- Viewing the Git Commit History
 
-```bash
-# Showing the recent ones
-<main-directory-name (master)> $ git log
-
-# consolidated log history 
-<main-directory-name (master)> $ git log --oneline
-
-# get last three commits
-<main-directory-name (master)> $ git log -n 3
-
-# consolidated log history, last 3 commits 
-<main-directory-name (master)> $ git log --oneline -n 3
-
-# check log of a particular file
-<main-directory-name (master)> $ git log <filename>
-
-# shows HEAD and the latest commit
-<main-directory-name (master)> $ git log --oneline --decorate
-```
-
-- Git Branches
+<details>
+<summary>
+ List the branch/es
+</summary> <br />
 
 ```bash
 # check current or all branches. The green one will be the current branch.
-<converted-git-repo (master)> $ git branch
-
-# create a new branch
-<converted-git-repo (master)> $ git branch <new-feature-branch>
-<converted-git-repo (master)> $ git branch
-
-# switch to a new branch
-<converted-git-repo (master)> $ git checkout <new-feature-branch>
-<converted-git-repo (master)> $ git branch (this shows <new-feature-branch>)
-You can start adding/modifying files
-<converted-git-repo (master)> $ git add <new files>
-<converted-git-repo (master)> $ git commit -m "mesage"  
-<main-directory-name (master)> $ git log --oneline
-
-# switch to master branch
-<converted-git-repo (master)> $ git checkout master  
-<converted-git-repo (master)> $ git branch
-
-# merging changes made from the branch to the master
-<converted-git-repo (master)> $ git merge <new-feature-branch>
-<converted-git-repo (master)> $ git log --oneline --decorate (shows the latest commit)
-
-# delete the branch. Take note on the directory where you created the branch
-<converted-git-repo (master)> $ git branch -d <new-feature-branch>
-<converted-git-repo (master)> $ git branch
-<converted-git-repo (master)> $ git log --oneline --decorate
-
+<main-directory-name (master)> $ git branch
+OR
+<main-directory-name (master)> $ git branch --list
+<main-directory-name (master)> $ git status
 ```
-###
-
 </details>
-
-
-## Method 3. Cloning remote repository 
-
-You can clone a remote repository from a remote server. For example from Github to your local machine. Github is arguably the most popular web based Git repository hosting service in the world.
-
-To get started with Amplication, the hosted version of the product can be used. You can get started immediately at [app.amplication.com](https://app.amplication.com). After the login page, you will be guided through creating your first service. The [website](https://amplication.com) provides an overview of the application, additional information on the product and guides can be found in the [docs](https://docs.amplication.com).
-
+ 
 <details>
 <summary>
-  Tutorials
+ Creating a branch locally
 </summary> <br />
 
 ```bash
-docker run --network=internal --name k6 --rm -i grafana/k6 run - <test.js
+
+# create a new branch
+<converted-git-repo (master)> $ git branch <new-feature-branch>
+<converted-git-repo (master)> $ git branch OR git branch --list 
 ```
- 
 </details>
 
-## Method 4. Creating branches
-
-You can clone a remote repository from a remote server. For example from Github to your local machine. Github is arguably the most popular web based Git repository hosting service in the world.
-
-To get started with Amplication, the hosted version of the product can be used. You can get started immediately at [app.amplication.com](https://app.amplication.com). After the login page, you will be guided through creating your first service. The [website](https://amplication.com) provides an overview of the application, additional information on the product and guides can be found in the [docs](https://docs.amplication.com).
-
- <details>
+<details>
 <summary>
-  Push Changes to Github
+Switch to branch
+</summary> <br />
+
+```bash
+
+# switch to branch
+<main-directory-name (master)> $ git checkout <new-feature-branch>
+<main-directory-name (master)> $ git branch (this shows <new-feature-branch>)
+
+# then add or modify files
+
+<main-directory-name (master)> $ git add . OR git add <new files>
+<main-directory-name (master)> $ git status 
+<main-directory-name (master)> $ git commit -m "message"  (OR git commit -am "message") > you will see (HEAD -> b1)
+<main-directory-name (master)> $ git branch -r  (check/list remote branch)
+<main-directory-name (master)> $git push > then go and check the branch in the repository 
+```
+
+```bash
+# switch to master branch
+<new-feature-branch (master)> $ git checkout master  
+<new-feature-branch (master)> $ git branch
+```
+
+</details>
+
+<details>
+<summary>
+ Deleting a branch to main
+</summary> <br />
+
+```bash
+<main-directory-name (master)> $ git branch --list
+<main-directory-name (master)> $ git checkout main 
+<main-directory-name (master)> $ git branch -d b1 (be sure you are in the main branch)
+```
+</details>
+
+<details>
+<summary>
+ Merging a branch to main
+</summary> <br />
+
+```bash
+#Scenario 1. Simple Merging
+<main-directory-name (master)> $ git branch --list
+<main-directory-name (master)> $ git checkout b1 
+<main-directory-name (master)> $ git merge b2  (b2 will merge into b1. take note, you must be in b1 to do this)
+
+#Scenario 2. merging b1 to main locally and into the repository
+<main-directory-name (master)> $ git checkout main
+<main-directory-name (master)> $ git merge b1
+<main-directory-name (master)> $ ls (to see the files being added to the main)
+<main-directory-name (master)> $ git status ("our branch is ahead of 'origin/main' by XXXX commint")
+<main-directory-name (master)> $ git push (push to the remote server)
+
+#Scenario 3. merging changes made from the branch to the master
+<main-directory-name (master)> $ git merge <new-feature-branch>
+<main-directory-name (master)> $ git log --oneline --decorate (shows the latest commit)
+
+#Scenario 4. Handling conflicts. A file in local and repository has been updated with different changes
+
+<main-directory-name (master)> $ git add . 
+<main-directory-name (master)> $ git commit -am 'message'
+<main-directory-name (master)> $ git push > you will see a message "Rejected"
+
+# get the one from repository first
+git pull > you will a message telling you have a conflict
+
+	<<<<<<<<< HEAD
+	This is a local change
+	===============
+	This is a remote change
+	>>>>>>>> 4200olkrippv8956kk67m7890kjhhy455h
+
+step 1. open the file and remove the following:
+
+	<<<<<<<<< HEAD
+	===============
+	>>>>>>>> 4200olkrippv8956kk67m7890kjhhy455h
+
+step 2. Save the file
+
+git -am "resolved conflicts"
+git push
+
+```
+</details>
+
+<details>
+<summary>
+ Checking out a branch
+</summary> <br />
+
+```bash
+<main-directory-name (master)> $ ls 
+new-project-folder
+
+<main-directory-name (master)> $ cd new-project-folder
+<new-project-folder (master #)> $ git remote -v  (listed all remote references. If this is your first time, it won't show anything)
+```
+</details>
+
+
+<details>
+<summary>
+ Deleting a branch
 </summary> <br />
 
 ```bash
@@ -474,29 +526,30 @@ new-project-folder
 <main-directory-name (master)> $ cd new-project-folder
 <new-project-folder (master #)> $ git remove -v  (listed all remote references. If this is your first time, it won't show anything)
 ```
+```bash
+# delete the branch. Take note on the directory where you created the branch
+<converted-git-repo (master)> $ git branch -d <new-feature-branch>
+<converted-git-repo (master)> $ git branch
+<converted-git-repo (master)> $ git log --oneline --decorate
+```
+
 </details>
-
-
-
-## Github  jojo
 
 <details>
 <summary>
-  Creating a repository on Github 
+  Push Changes to Github
 </summary> <br />
 
-- **Step 1**: Provide "Repository name" for example 'git-bootcamp'
-- **Step 2**: Add Description (optional)
-- **Step 3**: Select Public or Private
-- **Step 4**: Initialize this repository with: tick "Add a README file"
-- **Step 5**: add .gitignore (optional)
-- **Step 6**: Add a license (optional)
-- **Step 7**: click "Create repository" 
-- **Step 8**: copy the remote repository URL
-> [!see this]
-> HTTPS or SSH : https://github.com/lpadlan/git-bootcamp.git.
+```bash
+<main-directory-name (master)> $ ls 
+new-project-folder
 
+<main-directory-name (master)> $ cd new-project-folder
+<new-project-folder (master #)> $ git remote -v  (listed all remote references. If this is your first time, it won't show anything)
+```
 </details>
+
+## Github 
 
 <details>
 <summary>
@@ -556,6 +609,36 @@ Password for 'https://lpadlan@github.com':
 
 <details>
 <summary>
+ Reverting Changes From a Git Repository
+</summary> <br />
+
+
+```bash
+# For Modified files after executing "git add". Take note, the command "git status" hasn't been executed
+modify a file
+<main-directory-name (master)> $ git add <file/s>
+<main-directory-name (master)> $ git status (here you will see get reset HEAD <file>)
+<main-directory-name (master)> $ git reset HEAD <filename>
+<main-directory-name (master)> $ git status
+showing the following again:
+- git add <file>  
+- git checkout -- <filename>
+
+<main-directory-name (master)> $ git checkout -- <filename>
+
+# For newly added directory and file OR it hasn't been tracked 
+add a file
+<main-directory-name (master)> $ git add <file/s>
+<main-directory-name (master)> $ git status  (you will see git rm --cached <file>..." to unstage)
+<main-directory-name (master)> $ git rm --cached <filename>
+<main-directory-name (master)> $ git status (this shows "Untracked files" )
+<main-directory-name (master)> $ rm <filename>
+<main-directory-name (master)> $ git status (this shows "Initial commit")
+```
+</details>
+
+<details>
+<summary>
   Pulling Changes from Github. Get the latest changes from repository
 </summary> <br />
 
@@ -597,13 +680,33 @@ click Clone button
 <main-directory-name (master)> $ git branch -a
 <main-directory-name (master)> $ git remote -v
 
-```
- 
+``` 
 </details>
 
 <details>
 <summary>
-  git log
+  Staging changes in your working directory for the next commit (git add)
+</summary> <br />
+
+```bash
+# For Modified files
+- git add <file> (every you execute this, you will see "git reset HEAD <file>" command to unstage when you execute git status) 
+- git checkout -- <filename>
+
+## For Modified files - option 2. Checkout (to discard or reverting)
+<main-directory-name (master)> $ git status
+<main-directory-name (master)> $ git checkout -- <filename>
+<main-directory-name (master)> $ git status
+```
+
+
+</details>
+
+
+
+<details>
+<summary>
+  Viewing the Git Commit History (git log)
 </summary> <br />
 
 ```bash
@@ -615,13 +718,32 @@ click Clone button
 # to see the commit details:
 <new-project-folder (master #)> git log
 <new-project-folder (master #)> git show <commit code or the hash>
-
 ```
+```bash
+# Showing the recent ones
+<main-directory-name (master)> $ git log
+
+# consolidated log history 
+<main-directory-name (master)> $ git log --oneline
+
+# get last three commits
+<main-directory-name (master)> $ git log -n 3
+
+# consolidated log history, last 3 commits 
+<main-directory-name (master)> $ git log --oneline -n 3
+
+# check log of a particular file
+<main-directory-name (master)> $ git log <filename>
+
+# shows HEAD and the latest commit
+<main-directory-name (master)> $ git log --oneline --decorate
+```
+
 </details>
 
 <details>
 <summary>
-  git status
+  Displays the current state of your working directory and staging area (git status)
 </summary> <br />
 
 ```bash
@@ -631,43 +753,8 @@ click Clone button
 ```
 </details>
 
-
-## Case#4. Creating a repository from Github 
-
-xxxx
- 
-
-<details>
-<summary>
-  Tutorials
-</summary> <br />
-
-```bash
-docker run --network=internal --name k6 --rm -i grafana/k6 run - <test.js
-```
- 
-</details>
-
-
-## Case#5. Creating a repository from Github 
-
- xxx
-
-<details>
-<summary>
-  Tutorials
-</summary> <br />
-
-```bash
-docker run --network=internal --name k6 --rm -i grafana/k6 run - <test.js
-```
- 
-</details>
-
 ## Using Git With Android 
-
-xxx
- 
+Android Studio has built-in Git integration that allows developers to perform version control tasks such as commit, push, pull, and merge directly from the VCS menu. It also provides a visual history of commits, branch management options, and tools for resolving merge conflicts without using the command line.
 
 <details>
 <summary>
@@ -751,8 +838,8 @@ docker run --network=internal --name k6 --rm -i grafana/k6 run - <test.js
 </details>
 
 ## Using Git With Jetbrain's IntelliJ IDEA 
-
-xxx 
+IntelliJ IDEA offers seamless Git support through its Git and VCS menus. Developers can easily create, switch, and merge branches, review changes using the integrated diff viewer, and perform common Git operations like committing and pushing—all within the IDE.
+ 
 <details>
 <summary>
   Setting up for Git usage
@@ -831,9 +918,9 @@ docker run --network=internal --name k6 --rm -i grafana/k6 run - <test.js
  
 </details>
 
-## Using Git With Eclipse 
+## Using Git With Visual Studio 
+Visual Studio includes Git functionality through the Git menu and Team Explorer. It enables users to clone repositories, manage branches, track changes, and synchronize code with remote repositories. All essential Git actions can be performed through a graphical interface, simplifying version control workflows.
 
-xxx 
 
 <details>
 <summary>
